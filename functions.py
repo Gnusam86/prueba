@@ -1,22 +1,21 @@
+menu = {
+    1: ("Hamburguesa", 50),
+    2: ("Pizza", 80),
+    3: ("Ensalada", 40),
+    4: ("Agua", 15)
+}
+
 # 1. Función para mostrar el menú
 def mostrar_menu():
     print("\n🍔 Bienvenido al Restaurante Digital 🍔")
-    print("1. Hamburguesa - $50")
-    print("2. Pizza - $80")
-    print("3. Ensalada - $40")
-    print("4. Agua - $15")
-    print("0. Terminar pedido")
+    for key, (item, price) in menu.items():
+        print(f"{key}. {item} - ${price}")
+    print("0. Salir")
 
 # 2. Función para obtener el precio según la opción
 def obtener_precio(opcion):
-    if opcion == 1:
-        return 50
-    elif opcion == 2:
-        return 80
-    elif opcion == 3:
-        return 40
-    elif opcion == 4:
-        return 15
+    if opcion in menu:
+        return menu[opcion][1]
     else:
         return 0
 
@@ -44,7 +43,7 @@ while True:
         
         # Sumar al total
         cuenta = cuenta + obtener_precio(opcion)
-        print("✅ Producto agregado. Subtotal:", cuenta)
+        print(f"Has añadido {menu[opcion][0]} a tu cuenta. Total actual: ${cuenta}")
     
     except ValueError:
         print("⚠️ Error: Debes escribir un número entero.")
